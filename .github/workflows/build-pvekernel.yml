@@ -47,9 +47,7 @@ jobs:
     - name: Clone source code
       run: git clone $REPO_URL -b $REPO_BRANCH pve-kernel
     
-    - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@master
-      if: env.SSH_ACTIONS == 'true'
+    
     
     - name: Compile the firmware
       id: compile
@@ -58,7 +56,10 @@ jobs:
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
         echo "::set-output name=status::success"
-        
+    - name: SSH connection to Actions
+      uses: P3TERX/debugger-action@master
+      if: env.SSH_ACTIONS == 'true'
+    
     - name: Upload kernel directory
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
