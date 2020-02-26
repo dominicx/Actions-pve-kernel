@@ -48,7 +48,7 @@ jobs:
       run: git clone $REPO_URL -b $REPO_BRANCH pve-kernel
     
     - name: SSH connection to Actions
-      uses: dominicx/debugger-action@master
+      uses: P3TERX/debugger-action@master
       if: env.SSH_ACTIONS == 'true'
     
     - name: Compile the firmware
