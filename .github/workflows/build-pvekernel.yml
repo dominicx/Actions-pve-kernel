@@ -93,4 +93,4 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: ${{ format('{0}', env.VER) }}
-        path: release
+        path: pve-kernel/release
