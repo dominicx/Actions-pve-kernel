@@ -30,7 +30,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
-
+        
+    - name: SSH connection to Actions
+      uses: P3TERX/debugger-action@master
+      if: env.SSH_ACTIONS == 'true'
+    
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
