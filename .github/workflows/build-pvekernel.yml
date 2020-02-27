@@ -18,9 +18,10 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: .config
   DIY_SH: diy.sh
-  SSH_ACTIONS: true
+  SSH_ACTIONS: false
   UPLOAD_BIN_DIR: true
   TZ: Asia/Shanghai
+  VER: pve-kernel
 
 jobs:
   build:
@@ -30,10 +31,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
-        
-    - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@master
-      if: env.SSH_ACTIONS == 'true'
     
     - name: Initialization environment
       env:
@@ -72,10 +69,6 @@ jobs:
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
         echo "::set-output name=status::success"
-        
-    - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@master
-      if: env.SSH_ACTIONS == 'true'
   
     - name: Create Release Directory
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
@@ -84,10 +77,20 @@ jobs:
         mkdir release
         cp pve-kernel/build/*.deb release/
         cp pve-kernel/build/*.ddeb release/
-          
+        
+    - name: Init version number
+      run: |
+        cd pve-kernel
+        echo "::set-env name=VER::$(ls abi* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g')"
+        echo ${{ env.VER }}
+    
+    - name: SSH connection to Actions
+      uses: P3TERX/debugger-action@master
+      if: env.SSH_ACTIONS == 'true'
+      
     - name: Upload kernel directory
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: pvekernel_directory
+        name: ${{ format('{0}', env.VER) }}
         path: release
