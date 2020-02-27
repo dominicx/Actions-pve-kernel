@@ -75,8 +75,8 @@ jobs:
       run: |
         cd pve-kernel
         mkdir release
-        cp build/*.deb release/
-        cp build/*.ddeb release/
+        cp *.deb release/
+        cp *.ddeb release/
         
     - name: Init version number
       run: |
