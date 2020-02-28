@@ -80,8 +80,10 @@ jobs:
     - name: Init version number
       run: |
         cd pve-kernel
-        echo "::set-env name=VER::$(ls abi* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g')"
-        echo ${{ env.VER }}
+        $version=$(ls abi* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g')
+        #Write-Output "::set-env name=VERSION::$version"
+        echo "::set-env name=VERSION::$version"
+        #echo ${{ env.VERSION }}
     
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
@@ -91,5 +93,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: ${{ format('{0}-dominicx', env.VER) }}
+        name: ${{ format('{0}-dominicx', env.VERSION) }}
         path: pve-kernel/release
