@@ -18,10 +18,9 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: .config
   DIY_SH: diy.sh
-  SSH_ACTIONS: true
+  SSH_ACTIONS: false
   UPLOAD_BIN_DIR: true
   TZ: Asia/Shanghai
-  VER: pve-kernel
 
 jobs:
   build:
@@ -92,5 +91,6 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: ${{ format('{0}', env.VER) }}
+        #name: ${{ format('{0}', env.VER) }}
+        name: ${{ format('{0}', ls abi* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g') }}
         path: pve-kernel/release
