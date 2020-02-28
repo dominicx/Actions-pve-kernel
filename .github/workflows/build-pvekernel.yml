@@ -91,6 +91,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        #name: ${{ format('{0}', env.VER) }}
-        name: $(ls abi* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g')
+        name: ${{ format('{0}-dominicx', env.VER) }}
         path: pve-kernel/release
