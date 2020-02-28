@@ -92,5 +92,5 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         #name: ${{ format('{0}', env.VER) }}
-        name: ${{ format('{0}', ls abi* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g') }}
+        name: $(ls abi* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g')
         path: pve-kernel/release
