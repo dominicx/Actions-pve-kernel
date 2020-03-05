@@ -78,10 +78,11 @@ jobs:
         cp *.ddeb release/
         
     - name: Init version number
+      id: getverion
       run: |
         cd pve-kernel
         $version=$(ls abi-prev* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g')
-        echo "::set-env name=VERSION::$version"
+        echo "::set-output name=version::$version"
     
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
@@ -91,5 +92,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: ${{ format('{0}-dominicx', env.VERSION) }}
+        name: ${{ format('{0}-dominicx', steps.getverion.outputs.version) }} 
         path: pve-kernel/release
