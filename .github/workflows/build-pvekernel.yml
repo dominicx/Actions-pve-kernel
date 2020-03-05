@@ -81,9 +81,7 @@ jobs:
       run: |
         cd pve-kernel
         $version=$(ls abi-prev* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g')
-        #Write-Output "::set-env name=VERSION::$version"
         echo "::set-env name=VERSION::$version"
-        #echo ${{ env.VERSION }}
     
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
