@@ -81,8 +81,8 @@ jobs:
       id: getverion
       run: |
         cd pve-kernel
-        $version=$(ls abi-prev* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g')
-        echo "::set-output name=version::$version"
+      
+        echo "::set-output name=version::$(ls abi-prev* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g')"
     
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
