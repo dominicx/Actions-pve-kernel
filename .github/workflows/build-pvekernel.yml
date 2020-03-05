@@ -81,7 +81,6 @@ jobs:
       id: getverion
       run: |
         cd pve-kernel
-      
         echo "::set-output name=version::$(ls abi-prev* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g')"
     
     - name: SSH connection to Actions
