@@ -1,4 +1,4 @@
-name: Build pve-kernel
+name: Build pve-kernel for 5.3
 
 on:
   release:
