@@ -37,7 +37,7 @@ jobs:
       run: |
         sudo swapoff /swapfile
         sudo rm -rf /swapfile /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
-        sudo wget -qO - http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg | sudo apt-key add -  >>/dev/null
+        sudo wget -qO - http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg | sudo APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add -  
         sudo chmod a+w /etc/apt/sources.list
         sudo -E echo "deb http://download.proxmox.com/debian/pve buster pve-no-subscription" >>/etc/apt/sources.list
         sudo -E apt-get -qq update
