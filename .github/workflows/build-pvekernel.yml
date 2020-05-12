@@ -38,7 +38,6 @@ jobs:
         sudo swapoff /swapfile
         sudo rm -rf /swapfile /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         #sudo wget -qO - http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add -  
-        cd /tmp
     
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
@@ -49,8 +48,8 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         
-        wget  http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg
-        sudo -E APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add proxmox-ve-release-6.x.gpg
+        #wget  http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg
+        #sudo -E APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add proxmox-ve-release-6.x.gpg
         sudo chmod a+w /etc/apt/sources.list
         sudo -E echo "deb http://download.proxmox.com/debian/pve buster pve-no-subscription" >>/etc/apt/sources.list
         sudo -E apt-get -qq update
