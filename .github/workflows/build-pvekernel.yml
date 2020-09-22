@@ -48,7 +48,7 @@ jobs:
         sudo -E apt-get -qq clean
         
     - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@master
+      uses: P3TERX/debugger-action@main
       if: env.SSH_ACTIONS == 'true'
     
     - name:  Install proxmox depends
@@ -104,7 +104,7 @@ jobs:
         echo "::set-output name=version::$(ls abi-prev* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g')"
     
     - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@master
+      uses: P3TERX/debugger-action@main
       if: env.SSH_ACTIONS == 'true'
       
     - name: Upload kernel directory
