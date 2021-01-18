@@ -48,8 +48,11 @@ jobs:
         sudo -E apt-get -qq clean
         
     - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@main
+      uses: P3TERX/ssh2actions@main
       if: env.SSH_ACTIONS == 'true'
+      env:
+         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
     
     - name:  Install proxmox depends
       env:
@@ -104,8 +107,11 @@ jobs:
         echo "::set-output name=version::$(ls abi-prev* | sed  's/abi-prev/pve-kernel/g' | sed 's/-pve//g')"
     
     - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@main
+      uses: P3TERX/ssh2actions@main
       if: env.SSH_ACTIONS == 'true'
+      env:
+         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       
     - name: Upload kernel directory
       uses: actions/upload-artifact@master
