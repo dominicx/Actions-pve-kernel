@@ -64,8 +64,8 @@ jobs:
         sed -i "s/7.64/7.58/g" debian/control 
         sed -i "s/4.7/4.4/g" debian/control
         sed -i "/libpve-common-perl (>= 6~),/d" debian/control
-        make 
-        sudo dpkg -i libproxmox-acme-perl*.deb
+        #make 
+        #sudo dpkg -i libproxmox-acme-perl*.deb
         sudo -E apt-get -qq install libpve-common-perl
         cd ../
         
