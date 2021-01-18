@@ -24,7 +24,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
@@ -58,10 +58,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo wget http://download.proxmox.com/debian/pve/dists/buster/pve-no-subscription/binary-amd64/libpve-common-perl_6.3-2_all.deb
-        #sudo dpkg -i libproxmox-acme-perl*.deb
-        sudo dpkg -i libpve-common-perl_6.3-2_all.deb
-        #cd ../
+        sudo -E apt-get install libpve-common-perl
         
     - name: Clone source code
       run: git clone $REPO_URL -b $REPO_BRANCH pve-kernel
