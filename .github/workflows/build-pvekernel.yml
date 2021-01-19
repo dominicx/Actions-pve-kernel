@@ -59,6 +59,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo -E apt-get install libpve-common-perl 
+        sudo -E apt-get install libbpf
         sudo wget http://archive.ubuntu.com/ubuntu/pool/universe/d/dwarves-dfsg/dwarves_1.19-1_amd64.deb
         sudo dpkg -i dwarves*.deb
         
