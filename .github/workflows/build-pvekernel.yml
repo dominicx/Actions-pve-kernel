@@ -59,9 +59,9 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo -E apt-get install libpve-common-perl 
-        sudo -E apt-get install libbpf0
-        sudo wget http://archive.ubuntu.com/ubuntu/pool/universe/d/dwarves-dfsg/dwarves_1.19-1_amd64.deb
-        sudo dpkg -i dwarves*.deb
+        sudo wget http://azure.archive.ubuntu.com/ubuntu/pool/universe/libb/libbpf/libbpf0_0.1.0-1_amd64.deb
+        sudo wget http://azure.archive.ubuntu.com/ubuntu/pool/universe/d/dwarves-dfsg/dwarves_1.19-1_amd64.deb
+        sudo dpkg -i libbpf0*.deb dwarves*.deb
         
     - name: Clone source code
       run: git clone $REPO_URL -b $REPO_BRANCH pve-kernel
