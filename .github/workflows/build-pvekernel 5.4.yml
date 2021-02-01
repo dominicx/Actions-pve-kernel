@@ -1,4 +1,4 @@
-name: Build pve-kernel
+name: Build pve-kernel for 5.3
 
 on:
   release:
@@ -10,8 +10,8 @@ on:
       - '.config54'
 #  schedule:
 #    - cron: 0 8 * * 5
-  watch:
-    types: started
+#  watch:
+#    types: started
 
 env:
   REPO_URL: git://git.proxmox.com/git/pve-kernel.git
