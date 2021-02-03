@@ -99,7 +99,9 @@ jobs:
         sudo apt-get autoremove -y
         sudo apt-get clean
         df -h
-        
+        rm -rf /usr/share/dotnet/
+        df -h
+
     - name: Compile the PVE kernel
       id: compile
       run: |
