@@ -85,7 +85,8 @@ jobs:
     - name: Fix lz4 build deps
       run: |
         cd pve-kernel
-        sudo apt-get install liblz4-tool liblz4-dev
+        sudo wget http://azure.archive.ubuntu.com/ubuntu/pool/main/l/lz4/lz4_1.9.3-0ubuntu1_amd64.deb
+        sudo dpkg -i lz4*.deb
         #sed -i "s/lz4/liblz4-1/g" debian/control.in
         
     - name: Freeing up disk space on CI system
