@@ -68,8 +68,7 @@ jobs:
         #sed -i "/libpve-common-perl (>= 6~),/d" debian/control
         rm src/test/*
         make clean
-        rm src/test/Makefile
-        rm src/test/verify-dnsapi-plugins-in-schema.pl
+        sed -i "s/src debian submodule/src debian/g" Makefile
         make deb 
         sudo dpkg -i libproxmox-acme*.deb
         sudo -E apt-get install libpve-common-perl
