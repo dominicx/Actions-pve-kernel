@@ -18,7 +18,7 @@ env:
   REPO_BRANCH: pve-kernel-5.4
   CONFIG_FILE: .config
   DIY_SH: diy.sh
-  SSH_ACTIONS: true
+  SSH_ACTIONS: false
   UPLOAD_BIN_DIR: true
   TZ: Asia/Shanghai
 
@@ -68,7 +68,6 @@ jobs:
         #sed -i "/libpve-common-perl (>= 6~),/d" debian/control
         rm src/test/*
         make clean
-        sed -i "s/src debian submodule/src debian/g" Makefile
         make deb 
         sudo dpkg -i libproxmox-acme*.deb
         sudo -E apt-get install libpve-common-perl
