@@ -78,8 +78,8 @@ jobs:
     - name: Clone source code
       run: |
         git clone $REPO_URL -b $REPO_BRANCH pve-kernel
-        cd pve-kernel
-        git reset --hard 7e2796e160db4f754438cd13cbf2b334f9c50a87
+        #cd pve-kernel
+        #git reset --hard 7e2796e160db4f754438cd13cbf2b334f9c50a87
     
     - name: Fix ACS patch
       run: |
