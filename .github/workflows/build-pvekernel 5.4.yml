@@ -18,7 +18,7 @@ env:
   REPO_BRANCH: pve-kernel-5.4
   CONFIG_FILE: .config
   DIY_SH: diy.sh
-  SSH_ACTIONS: true
+  SSH_ACTIONS: false
   UPLOAD_BIN_DIR: true
   TZ: Asia/Shanghai
 
@@ -78,8 +78,8 @@ jobs:
     - name: Clone source code
       run: |
         git clone $REPO_URL -b $REPO_BRANCH pve-kernel
-        #cd pve-kernel
-        #git checkout -b 7e2796e160db4f754438cd13cbf2b334f9c50a87
+        cd pve-kernel
+        git git reset --hard 7e2796e160db4f754438cd13cbf2b334f9c50a87
     
     - name: Fix ACS patch
       run: |
