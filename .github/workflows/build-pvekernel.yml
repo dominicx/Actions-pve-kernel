@@ -59,9 +59,14 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo -E apt-get install libpve-common-perl 
-        sudo wget http://azure.archive.ubuntu.com/ubuntu/pool/main/libb/libbpf/libbpf0_0.3-2_amd64.deb
-        sudo wget http://azure.archive.ubuntu.com/ubuntu/pool/universe/d/dwarves-dfsg/dwarves_1.17-1_amd64.deb
-        sudo dpkg -i libbpf0*.deb dwarves*.deb
+        git clone https://github.com/acmel/dwarves.git
+        cd dwarves/
+        mkdir build
+        cd build/
+        cmake -D__LIB=lib ..
+        make install
+        sudo cp pahole /usr/bin/pahole
+        sudo cp /usr/local/lib/* /usr/lib/
         
     - name: Clone source code
       run: git clone $REPO_URL -b $REPO_BRANCH pve-kernel
