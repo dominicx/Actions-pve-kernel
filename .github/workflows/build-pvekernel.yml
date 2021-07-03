@@ -64,7 +64,7 @@ jobs:
         mkdir build
         cd build/
         cmake -D__LIB=lib ..
-        make install
+        sudo make install
         sudo cp pahole /usr/bin/pahole
         sudo cp /usr/local/lib/* /usr/lib/
         
