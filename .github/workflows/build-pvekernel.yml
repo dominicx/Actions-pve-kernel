@@ -66,7 +66,7 @@ jobs:
         cmake -D__LIB=lib ..
         sudo make install
         sudo cp pahole /usr/bin/pahole
-        sudo cp /usr/local/lib/* /usr/lib/
+        sudo cp -r /usr/local/lib/* /usr/lib/
         
     - name: Clone source code
       run: git clone $REPO_URL -b $REPO_BRANCH pve-kernel
