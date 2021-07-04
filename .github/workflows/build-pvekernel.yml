@@ -83,6 +83,11 @@ jobs:
         cd pve-kernel
         #sed -i "s/lz4/liblz4-1/g" debian/control.in
     
+    - name: Fix DEBUG_INFO_BTF
+      run: |
+        cd pve-kernel
+        #sed -i "s/-e CONFIG_PAGE_TABLE_ISOLATION/-e CONFIG_PAGE_TABLE_ISOLATION \\\ \n-d CONFIG_DEBUG_INFO_BTF/" debian/rules
+    
     - name: Freeing up disk space on CI system
       run: |
         dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -n 100
