@@ -86,6 +86,7 @@ jobs:
     - name: Fix DEBUG_INFO_BTF
       run: |
         cd pve-kernel
+        sed -i 's/${LINUX_TOOLS_DBG_DEB}//' Makefile
         #sed -i "s/-e CONFIG_PAGE_TABLE_ISOLATION/-e CONFIG_PAGE_TABLE_ISOLATION \\\ \n-d CONFIG_DEBUG_INFO_BTF/" debian/rules
     
     - name: Freeing up disk space on CI system
