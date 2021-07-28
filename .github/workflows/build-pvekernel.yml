@@ -119,8 +119,8 @@ jobs:
         mkdir release
         cp *.deb release/
         cp *.ddeb release/
-        rm release/*dbgsym*.deb
-        rm release/*dbgsym*.ddeb
+        #rm release/*dbgsym*.deb
+        #rm release/*dbgsym*.ddeb
         
     - name: Init version number
       id: getverion
