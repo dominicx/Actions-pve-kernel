@@ -43,7 +43,7 @@ jobs:
         sudo chmod a+w /etc/apt/sources.list
         sudo -E echo "deb http://download.proxmox.com/debian/pve buster pve-no-subscription" >>/etc/apt/sources.list
         sudo -E apt-get update
-        sudo -E apt-get install git nano screen patch fakeroot build-essential devscripts libncurses5 libncurses5-dev libssl-dev bc flex bison libelf-dev libaudit-dev libgtk2.0-dev libperl-dev asciidoc xmlto gnupg gnupg2 rsync lintian debhelper libdw-dev libnuma-dev libslang2-dev sphinx-common asciidoc-base automake cpio dh-python file gcc kmod libiberty-dev  libtool perl-modules python-minimal sed tar zlib1g-dev liblz4-tool idn debhelper
+        sudo -E apt-get install git nano screen patch fakeroot build-essential devscripts libncurses5 libncurses5-dev libssl-dev bc flex bison libelf-dev libaudit-dev libgtk2.0-dev libperl-dev asciidoc xmlto gnupg gnupg2 rsync lintian debhelper libdw-dev libnuma-dev libslang2-dev sphinx-common asciidoc-base automake cpio dh-python file gcc kmod libiberty-dev  libtool perl-modules python-minimal sed tar zlib1g-dev liblz4-tool idn
         sudo -E apt-get autoremove --purge
         sudo -E apt-get clean
         
@@ -78,8 +78,8 @@ jobs:
     - name: Clone source code
       run: |
         git clone $REPO_URL -b $REPO_BRANCH pve-kernel
-        #cd pve-kernel
-        #git reset --hard 7e2796e160db4f754438cd13cbf2b334f9c50a87
+        cd pve-kernel
+        git reset --hard 7e2796e160db4f754438cd13cbf2b334f9c50a87
     
     - name: Fix ACS patch
       run: |
@@ -97,7 +97,7 @@ jobs:
       run: |
         dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -n 100
         df -h
-        #sudo apt-get remove -y '^ghc-8.*'
+        sudo apt-get remove -y '^ghc-8.*'
         sudo apt-get remove -y '^dotnet-.*'
         sudo apt-get remove -y '^llvm-.*'
         sudo apt-get remove -y 'php.*'
@@ -107,7 +107,6 @@ jobs:
         df -h
         rm -rf /usr/share/dotnet/
         df -h
-
     - name: Compile the PVE kernel
       id: compile
       run: |
