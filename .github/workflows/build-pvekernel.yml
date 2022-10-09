@@ -70,7 +70,7 @@ jobs:
         
     - name: Clone source code
       run: git clone $REPO_URL -b $REPO_BRANCH pve-kernel
-    
+            
     - name: Fix ACS patch
       run: |
         cd pve-kernel
@@ -93,7 +93,7 @@ jobs:
       run: |
         dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -n 100
         df -h
-        sudo apt-get remove -y '^ghc-8.*'
+        #sudo apt-get remove -y '^ghc-8.*'
         sudo apt-get remove -y '^dotnet-.*'
         sudo apt-get remove -y '^llvm-.*'
         sudo apt-get remove -y 'php.*'
